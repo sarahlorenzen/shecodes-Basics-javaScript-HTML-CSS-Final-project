@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman Game coded by Sarah Lorenzen</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/scripts.js" defer></script>
+  </head>
+  <body>
+    <main id="main" class="flex">
+      <section class="intro">
+        <h1>Hangman Game</h1>
+        <p>
+          When I'm waiting for anything, I can always be found playing a game on
+          my phone or when I'm with another person, out comes a pencil and paper
+          to play Hangman!
+        </p>
+      </section>
+      <section class="hangman-display flex-item">
+        <img src="img/hangman-0.svg" alt="Hangman structure" />
+      </section>
+      <section class="attempts flex-item">
+        <ul class="word">
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+          <li class="letter"></li>
+        </ul>
+        <h3>Word Hint:</h3>
+        <p class="hint">Hint about the word to be guessed</p>
+        <h4>Incorrect Guesses:</h4>
+        <p class="guesses-total"># / #</p>
+      </section>
+      <div class="keyboard"></div>
+      <p>Hand Coded by Sarah Lorenzen</p>
+    </main>
+  </body>
+</html>

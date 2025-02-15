@@ -1,0 +1,62 @@
+/* Global Layout Set-up */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 4rem;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif,
+    sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #222;
+  background: linear-gradient(
+    180.5deg,
+    rgb(0, 128, 128) 8.5%,
+    rgb(174, 206, 100) 118.2%
+  );
+  background-repeat: no-repeat;
+}
+
+#main {
+  padding: 2rem 3rem;
+  background: #fbfbfb;
+  border-radius: 10px;
+  min-height: 800px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+}
+
+.intro h1 {
+  font-size: 6rem;
+  margin: 0;
+}
+.intro p {
+  font-size: 1.8rem;
+}
+
+/* Section Styles */
+
+.word {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for larger screens */
+@media screen and (min-width: 720px) {
+  .flex {
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: flex;
+    max-width: 1200px;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+}
