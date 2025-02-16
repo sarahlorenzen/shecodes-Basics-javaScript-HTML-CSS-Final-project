@@ -4,9 +4,189 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangman Game coded by Sarah Lorenzen</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/scripts.js" defer></script>
-    <style></style>
+    <style>
+      /* Global Layout Set-up */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 1rem;
+        text-align: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif, sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
+        color: #333;
+        background: linear-gradient(
+          180.5deg,
+          rgb(0, 128, 128) 8.5%,
+          rgb(174, 206, 100) 118.2%
+        );
+        background-repeat: no-repeat;
+      }
+
+      #main {
+        padding: 2rem 1rem;
+        background: #fbfbfb;
+        border-radius: 10px;
+        min-height: 600px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .intro h1 {
+        font-size: 2.5rem;
+        margin: 0;
+      }
+      .intro h2 {
+        font-size: 1.4rem;
+        padding: 0 10px;
+        font-weight: 300;
+      }
+      h4,
+      .guesses,
+      .hint,
+      h3 {
+        margin: 0;
+      }
+
+      .attempts {
+        margin: 6rem 0 3rem;
+      }
+
+      /* Section Styles */
+
+      .container.flex {
+        margin: 4rem auto 2rem;
+        align-items: center;
+      }
+
+      .word.flex {
+        list-style: none;
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 4rem;
+        padding-left: 0;
+      }
+      .word.flex li {
+        border-bottom: 4px solid #68a773;
+        width: 40px;
+        justify-content: space-around;
+        font-weight: 100;
+        text-transform: uppercase;
+        color: #222;
+        font-size: 1.8rem;
+      }
+      .credits {
+        color: #666;
+        font-weight: 300;
+      }
+
+      .play-button {
+        font-family: inherit;
+        font-size: 1.25rem;
+        letter-spacing: 1px;
+        padding: 1rem;
+        margin: 2rem 1rem;
+        background: #891353;
+        border-radius: 8px;
+        color: #fff;
+        border: 1px solid #c5134f;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        min-width: 60px;
+        -webkit-transition: background-color 1s ease-out;
+        -moz-transition: background-color 1s ease-out;
+        -o-transition: background-color 1s ease-out;
+        transition: background-color 1s ease-out;
+      }
+      .play-button:hover {
+        background: #480a2c;
+      }
+      hr {
+        border: 1px solid #eee;
+        color: #eee !important;
+        height: 1px;
+      }
+      .gameover.show {
+        font-size: 1.75rem;
+        margin-top: 2rem;
+        padding: 1rem;
+        font-weight: 600;
+        color: #961a01;
+        border: 1px solid #f8d5cc;
+        background: #fbefeb;
+      }
+
+      /* Styles for smaller screens */
+      @media screen and (max-width: 1040px) {
+        .container.flex {
+          flex-direction: column;
+        }
+      }
+
+      /* Styles for larger screens */
+      @media screen and (min-width: 720px) {
+        body {
+          padding: 4rem;
+        }
+        #main {
+          padding: 2rem 3rem 1rem;
+          max-width: 1300px;
+          margin: 0 auto;
+        }
+        .flex {
+          display: -ms-flexbox; /* TWEENER - IE 10 */
+          display: flex;
+          max-width: 1200px;
+          -ms-flex-pack: distribute;
+          justify-content: space-around;
+          margin: 0 auto;
+        }
+        .intro h1 {
+          font-size: 4rem;
+          letter-spacing: 3px;
+        }
+        .intro h2 {
+          font-size: 1.8rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .attempts h3,
+        .attempts h4,
+        .hint,
+        .guesses {
+          display: inline-block;
+          padding-right: 5px;
+          font-size: 1.5rem;
+        }
+        .container.flex {
+          margin: 5rem auto 2rem;
+          justify-content: space-between;
+        }
+        .hangman-display {
+          flex-grow: 1; /* default 0 */
+        }
+        .attempts {
+          flex-grow: 3; /* default 0 */
+        }
+        .word.flex li {
+          font-size: 4rem;
+        }
+
+        .play-button {
+          font-size: 1.9rem;
+          margin: 2rem auto 0;
+          min-width: 70px;
+          display: block;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
   <body>
     <main id="main">
@@ -20,39 +200,30 @@
       </section>
       <div class="container flex">
         <section class="hangman-display">
-          <img src="img/hangman-0.svg" alt="Hangman structure" />
+          <img src="hangman-0.svg" id="hangman-pic" />
         </section>
         <section class="attempts">
           <ul class="word flex">
-            <li class="letter">c</li>
-            <li class="letter">o</li>
-            <li class="letter">d</li>
-            <li class="letter">e</li>
-            <li class="letter">_</li>
-            <li class="letter">i</li>
-            <li class="letter">s</li>
-            <li class="letter">_</li>
-            <li class="letter">f</li>
-            <li class="letter">u</li>
-            <li class="letter">n</li>
+            <li class="letter1"></li>
+            <li class="letter2"></li>
+            <li class="letter3"></li>
+            <li class="letter4"></li>
+            <li class="letter5"></li>
+            <li class="letter6"></li>
+            <li class="letter7"></li>
+            <li class="letter8"></li>
+            <li class="letter9"></li>
+            <li class="letter10"></li>
           </ul>
           <h3>Word Hint:</h3>
-          <p class="hint">Hint about the word to be guessed</p>
+          <p class="hint">code that adds functionality...</p>
           <br />
-          <h4>You Have 6 Guesses:</h4>
-          <p class="guesses"># / 6</p>
+          <h4>You're allowed 6 Wrong Guesses.</h4>
+          <div class="gameover">
+            <button class="play-button">Play Game</button>
+          </div>
         </section>
       </div>
-      <section class="keyboard flex">
-        <button>a</button><button>b</button><button>c</button><button>d</button
-        ><button>e</button><button>f</button><button>g</button>
-        <button>h</button><button>i</button><button>j</button><button>k</button
-        ><button>l</button><button>m</button> <button>n</button
-        ><button>o</button><button>p</button><button>q</button><button>r</button
-        ><button>s</button><button>t</button> <button>u</button
-        ><button>v</button><button>w</button><button>x</button>
-        <button>y</button><button>z</button>
-      </section>
       <hr />
       <p class="credits">
         Hand Coded by Sarah Lorenzen in
@@ -60,6 +231,80 @@
         <a href="https://www.shecodes.io/">SheCodes Bootcamp</a>
       </p>
     </main>
-    <script></script>
+    <script>
+      // Select the image element using its ID
+      const hangmanImage = document.getElementById("hangman-pic");
+      hangmanImage.src = "hangman-0.svg";
+      let counterWrongGuesses = 0; // initialize the counter variable with 0
+      let gameoverMsg = document.querySelector(".gameover"); // 6 wrong answers message
+
+      function askForLetter() {
+        // Word to Guess - javascript
+
+        counterWrongGuesses;
+
+        let letter1 = document.querySelector(".letter1");
+        let letter2 = document.querySelector(".letter2");
+        let letter3 = document.querySelector(".letter3");
+        let letter4 = document.querySelector(".letter4");
+        let letter5 = document.querySelector(".letter5");
+        let letter6 = document.querySelector(".letter6");
+        let letter7 = document.querySelector(".letter7");
+        let letter8 = document.querySelector(".letter8");
+        let letter9 = document.querySelector(".letter9");
+        let letter10 = document.querySelector(".letter10");
+
+        // Letter Guesses
+
+        const lettersToGuess = ["j", "a", "v", "s", "c", "r", "i", "p", "t"];
+
+        let chooseLetter = prompt("Guess a letter in the word...")
+          .toLowerCase()
+          .trim();
+
+        if (lettersToGuess.includes(chooseLetter)) {
+          alert("That is correct! Click the Play Game button to continue.");
+        }
+
+        if (chooseLetter === "j") {
+          letter1.innerHTML = "J";
+        } else if (chooseLetter === "a") {
+          letter2.innerHTML = "A";
+          letter4.innerHTML = "A";
+        } else if (chooseLetter === "v") {
+          letter3.innerHTML = "V";
+        } else if (chooseLetter === "s") {
+          letter5.innerHTML = "S";
+        } else if (chooseLetter === "c") {
+          letter6.innerHTML = "C";
+        } else if (chooseLetter === "r") {
+          letter7.innerHTML = "R";
+        } else if (chooseLetter === "i") {
+          letter8.innerHTML = "I";
+        } else if (chooseLetter === "p") {
+          letter9.innerHTML = "P";
+        } else if (chooseLetter === "t") {
+          letter10.innerHTML = "T";
+        } else {
+          alert(
+            "That is incorrect. Please click the Play Game button to guess again."
+          );
+          // If guessed letter doesn't exist then update the counterWrongGuesses and hangman image
+          counterWrongGuesses++;
+          hangmanImage.src = `hangman-${counterWrongGuesses}.svg`; // Update the image source
+
+          // Incorrect Attempts
+
+          if (counterWrongGuesses === 6) {
+            gameoverMsg.classList.add("show");
+            gameoverMsg.innerHTML =
+              "Sorry, you lost. Refresh the page to try again."; // 6 wrong answers message
+          }
+        }
+      }
+
+      let playGameButton = document.querySelector("button");
+      playGameButton.addEventListener("click", askForLetter);
+    </script>
   </body>
 </html>
