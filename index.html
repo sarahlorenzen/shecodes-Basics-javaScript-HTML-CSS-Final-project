@@ -6,41 +6,60 @@
     <title>Hangman Game coded by Sarah Lorenzen</title>
     <link rel="stylesheet" href="css/styles.css" />
     <script src="js/scripts.js" defer></script>
+    <style></style>
   </head>
   <body>
-    <main id="main" class="flex">
+    <main id="main">
       <section class="intro">
         <h1>Hangman Game</h1>
-        <p>
+        <h2>
           When I'm waiting for anything, I can always be found playing a game on
           my phone or when I'm with another person, out comes a pencil and paper
-          to play Hangman!
-        </p>
+          to play <span style="font-weight: 400"><em>Hangman!</em></span>
+        </h2>
       </section>
-      <section class="hangman-display flex-item">
-        <img src="img/hangman-0.svg" alt="Hangman structure" />
+      <div class="container flex">
+        <section class="hangman-display">
+          <img src="img/hangman-0.svg" alt="Hangman structure" />
+        </section>
+        <section class="attempts">
+          <ul class="word flex">
+            <li class="letter">c</li>
+            <li class="letter">o</li>
+            <li class="letter">d</li>
+            <li class="letter">e</li>
+            <li class="letter">_</li>
+            <li class="letter">i</li>
+            <li class="letter">s</li>
+            <li class="letter">_</li>
+            <li class="letter">f</li>
+            <li class="letter">u</li>
+            <li class="letter">n</li>
+          </ul>
+          <h3>Word Hint:</h3>
+          <p class="hint">Hint about the word to be guessed</p>
+          <br />
+          <h4>You Have 6 Guesses:</h4>
+          <p class="guesses"># / 6</p>
+        </section>
+      </div>
+      <section class="keyboard flex">
+        <button>a</button><button>b</button><button>c</button><button>d</button
+        ><button>e</button><button>f</button><button>g</button>
+        <button>h</button><button>i</button><button>j</button><button>k</button
+        ><button>l</button><button>m</button> <button>n</button
+        ><button>o</button><button>p</button><button>q</button><button>r</button
+        ><button>s</button><button>t</button> <button>u</button
+        ><button>v</button><button>w</button><button>x</button>
+        <button>y</button><button>z</button>
       </section>
-      <section class="attempts flex-item">
-        <ul class="word">
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-        </ul>
-        <h3>Word Hint:</h3>
-        <p class="hint">Hint about the word to be guessed</p>
-        <h4>Incorrect Guesses:</h4>
-        <p class="guesses-total"># / #</p>
-      </section>
-      <div class="keyboard"></div>
-      <p>Hand Coded by Sarah Lorenzen</p>
+      <hr />
+      <p class="credits">
+        Hand Coded by Sarah Lorenzen in
+        <strong>HTML, CSS and JavaScript</strong> for
+        <a href="https://www.shecodes.io/">SheCodes Bootcamp</a>
+      </p>
     </main>
+    <script></script>
   </body>
 </html>

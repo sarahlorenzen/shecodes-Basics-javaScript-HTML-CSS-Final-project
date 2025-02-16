@@ -5,14 +5,14 @@
 
 body {
   margin: 0;
-  padding: 4rem;
+  padding: 1rem;
   text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif,
     sans-serif;
   font-size: 18px;
   line-height: 1.5;
-  color: #222;
+  color: #333;
   background: linear-gradient(
     180.5deg,
     rgb(0, 128, 128) 8.5%,
@@ -22,35 +22,117 @@ body {
 }
 
 #main {
-  padding: 2rem 3rem;
+  padding: 2rem 1rem;
   background: #fbfbfb;
   border-radius: 10px;
-  min-height: 800px;
+  min-height: 600px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  flex-direction: column;
 }
 
 .intro h1 {
-  font-size: 6rem;
+  font-size: 2.5rem;
   margin: 0;
 }
-.intro p {
-  font-size: 1.8rem;
+.intro h2 {
+  font-size: 1.4rem;
+  padding: 0 10px;
+  font-weight: 300;
+}
+h4,
+.guesses,
+.hint,
+h3 {
+  margin: 0;
+}
+
+.attempts {
+  margin: 3rem 0;
 }
 
 /* Section Styles */
 
-.word {
+.container.flex {
+  margin: 4rem auto 2rem;
+  align-items: center;
+}
+
+.word.flex {
   list-style: none;
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
   align-items: center;
+  margin-bottom: 4rem;
+  padding-left: 0;
+}
+.letter {
+  border-bottom: 4px solid #68a773;
+  width: 40px;
+  justify-content: space-around;
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #222;
+  font-size: 1.8rem;
+}
+.guesses {
+  font-weight: 600;
+  color: #ba0909;
+}
+.credits {
+  color: #666;
+  font-weight: 300;
+}
+.keyboard.flex {
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+}
+.keyboard button {
+  font-family: inherit;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 1rem;
+  margin: 10px;
+  background: #891353;
+  border-radius: 8px;
+  color: #fff;
+  border: 1px solid #c5134f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  min-width: 60px;
+  -webkit-transition: background-color 1s ease-out;
+  -moz-transition: background-color 1s ease-out;
+  -o-transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out;
+}
+.keyboard button:hover {
+  background: #480a2c;
+}
+hr {
+  border: 1px solid #eee;
+  color: #eee !important;
+  height: 1px;
+}
+
+/* Styles for smaller screens */
+@media screen and (max-width: 1040px) {
+  .container.flex {
+    flex-direction: column;
+  }
 }
 
 /* Styles for larger screens */
 @media screen and (min-width: 720px) {
+  body {
+    padding: 4rem;
+  }
+  #main {
+    padding: 2rem 3rem 1rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
   .flex {
     display: -ms-flexbox; /* TWEENER - IE 10 */
     display: flex;
@@ -58,5 +140,44 @@ body {
     -ms-flex-pack: distribute;
     justify-content: space-around;
     margin: 0 auto;
+  }
+  .intro h1 {
+    font-size: 5rem;
+    letter-spacing: 3px;
+  }
+  .intro h2 {
+    font-size: 1.8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .attempts h3,
+  .attempts h4,
+  .hint,
+  .guesses {
+    display: inline-block;
+    padding-right: 5px;
+    font-size: 1.25rem;
+  }
+  .container.flex {
+    margin: 5rem auto 2rem;
+    justify-content: space-between;
+  }
+  .hangman-display {
+    flex-grow: 1; /* default 0 */
+  }
+  .attempts {
+    flex-grow: 3; /* default 0 */
+  }
+  .letter {
+    font-size: 4rem;
+  }
+  .keyboard.flex {
+    max-width: 75vw;
+    margin: 4rem auto;
+  }
+  .keyboard button {
+    font-size: 1.9rem;
+    margin: 15px 10px;
+    min-width: 70px;
   }
 }

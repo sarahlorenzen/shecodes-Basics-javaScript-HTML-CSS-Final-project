@@ -25,6 +25,6 @@ const wordList = [
 // Game Variables
 const wordDisplay = document.querySelector(".word");
 const wordHint = document.querySelector(".hint");
-const lettersGuessed = document.querySelector(".guesses-total");
+const lettersGuessed = document.querySelector(".guesses");
 const lettersKeyboard = document.querySelector(".keyboard");
 const partsHangman = document.querySelector(".hangman-display img");
